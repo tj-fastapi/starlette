@@ -1,0 +1,1200 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The little ASGI library that shines.">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>Middleware - Starlette</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#corsmiddleware" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Starlette" class="md-header__button md-logo" aria-label="Starlette" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Starlette
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Middleware
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/encode/starlette" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    encode/starlette
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Starlette" class="md-nav__button md-logo" aria-label="Starlette" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Starlette
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/encode/starlette" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    encode/starlette
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="applications.html" class="md-nav__link">
+        Applications
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        Requests
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        Responses
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="websockets.html" class="md-nav__link">
+        WebSockets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        Routing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="endpoints.html" class="md-nav__link">
+        Endpoints
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Middleware
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="middleware.html" class="md-nav__link md-nav__link--active">
+        Middleware
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#corsmiddleware" class="md-nav__link">
+    CORSMiddleware
+  </a>
+  
+    <nav class="md-nav" aria-label="CORSMiddleware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cors-preflight-requests" class="md-nav__link">
+    CORS preflight requests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-requests" class="md-nav__link">
+    Simple requests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sessionmiddleware" class="md-nav__link">
+    SessionMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#httpsredirectmiddleware" class="md-nav__link">
+    HTTPSRedirectMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trustedhostmiddleware" class="md-nav__link">
+    TrustedHostMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gzipmiddleware" class="md-nav__link">
+    GZipMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basehttpmiddleware" class="md-nav__link">
+    BaseHTTPMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-middleware-in-other-frameworks" class="md-nav__link">
+    Using middleware in other frameworks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#third-party-middleware" class="md-nav__link">
+    Third party middleware
+  </a>
+  
+    <nav class="md-nav" aria-label="Third party middleware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sentrymiddleware" class="md-nav__link">
+    SentryMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxyheadersmiddleware" class="md-nav__link">
+    ProxyHeadersMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timingmiddleware" class="md-nav__link">
+    TimingMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datasette-auth-github" class="md-nav__link">
+    datasette-auth-github
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prometheusmiddleware" class="md-nav__link">
+    PrometheusMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bugsnagmiddleware" class="md-nav__link">
+    BugsnagMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#earlydatamiddleware" class="md-nav__link">
+    EarlyDataMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authlibmiddleware" class="md-nav__link">
+    AuthlibMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starletteopentracing" class="md-nav__link">
+    StarletteOpentracing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ratelimitmiddleware" class="md-nav__link">
+    RateLimitMiddleware
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="staticfiles.html" class="md-nav__link">
+        Static Files
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="templates.html" class="md-nav__link">
+        Templates
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="graphql.html" class="md-nav__link">
+        GraphQL
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="schemas.html" class="md-nav__link">
+        API Schemas
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        Events
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="background.html" class="md-nav__link">
+        Background Tasks
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="server-push.html" class="md-nav__link">
+        Server Push
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exceptions.html" class="md-nav__link">
+        Exceptions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="config.html" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testclient.html" class="md-nav__link">
+        Test Client
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="third-party-packages.html" class="md-nav__link">
+        Third Party Packages
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes.html" class="md-nav__link">
+        Release Notes
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#corsmiddleware" class="md-nav__link">
+    CORSMiddleware
+  </a>
+  
+    <nav class="md-nav" aria-label="CORSMiddleware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cors-preflight-requests" class="md-nav__link">
+    CORS preflight requests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-requests" class="md-nav__link">
+    Simple requests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sessionmiddleware" class="md-nav__link">
+    SessionMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#httpsredirectmiddleware" class="md-nav__link">
+    HTTPSRedirectMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trustedhostmiddleware" class="md-nav__link">
+    TrustedHostMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gzipmiddleware" class="md-nav__link">
+    GZipMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basehttpmiddleware" class="md-nav__link">
+    BaseHTTPMiddleware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-middleware-in-other-frameworks" class="md-nav__link">
+    Using middleware in other frameworks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#third-party-middleware" class="md-nav__link">
+    Third party middleware
+  </a>
+  
+    <nav class="md-nav" aria-label="Third party middleware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sentrymiddleware" class="md-nav__link">
+    SentryMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxyheadersmiddleware" class="md-nav__link">
+    ProxyHeadersMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timingmiddleware" class="md-nav__link">
+    TimingMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datasette-auth-github" class="md-nav__link">
+    datasette-auth-github
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prometheusmiddleware" class="md-nav__link">
+    PrometheusMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bugsnagmiddleware" class="md-nav__link">
+    BugsnagMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#earlydatamiddleware" class="md-nav__link">
+    EarlyDataMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authlibmiddleware" class="md-nav__link">
+    AuthlibMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starletteopentracing" class="md-nav__link">
+    StarletteOpentracing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ratelimitmiddleware" class="md-nav__link">
+    RateLimitMiddleware
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Middleware</h1>
+                
+                <p>Starlette includes several middleware classes for adding behavior that is applied across
+your entire application. These are all implemented as standard ASGI
+middleware classes, and can be applied either to Starlette or to any other ASGI application.</p>
+<p>The Starlette application class allows you to include the ASGI middleware
+in a way that ensures that it remains wrapped by the exception handler.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.applications</span> <span class="kn">import</span> <span class="n">Starlette</span>
+<span class="kn">from</span> <span class="nn">starlette.middleware</span> <span class="kn">import</span> <span class="n">Middleware</span>
+<span class="kn">from</span> <span class="nn">starlette.middleware.httpsredirect</span> <span class="kn">import</span> <span class="n">HTTPSRedirectMiddleware</span>
+<span class="kn">from</span> <span class="nn">starlette.middleware.trustedhost</span> <span class="kn">import</span> <span class="n">TrustedHostMiddleware</span>
+
+<span class="n">routes</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># Ensure that all requests include an &#39;example.com&#39; or &#39;*.example.com&#39; host header,</span>
+<span class="c1"># and strictly enforce https-only access.</span>
+<span class="n">middleware</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">Middleware</span><span class="p">(</span><span class="n">TrustedHostMiddleware</span><span class="p">,</span> <span class="n">allowed_hosts</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;*.example.com&#39;</span><span class="p">]),</span>
+  <span class="n">Middleware</span><span class="p">(</span><span class="n">HTTPSRedirectMiddleware</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Starlette</span><span class="p">(</span><span class="n">routes</span><span class="o">=</span><span class="n">routes</span><span class="p">,</span> <span class="n">middleware</span><span class="o">=</span><span class="n">middleware</span><span class="p">)</span>
+</code></pre></div>
+<p>Every Starlette application automatically includes two pieces of middleware
+by default:</p>
+<ul>
+<li><code>ServerErrorMiddleware</code> - Ensures that application exceptions may return a custom 500 page, or display an application traceback in DEBUG mode. This is <em>always</em> the outermost middleware layer.</li>
+<li><code>ExceptionMiddleware</code> - Adds exception handlers, so that particular types of expected exception cases can be associated with handler functions. For example raising <code>HTTPException(status_code=404)</code> within an endpoint will end up rendering a custom 404 page.</li>
+</ul>
+<p>Middleware is evaluated from top-to-bottom, so the flow of execution in our example
+application would look like this:</p>
+<ul>
+<li>Middleware<ul>
+<li><code>ServerErrorMiddleware</code></li>
+<li><code>TrustedHostMiddleware</code></li>
+<li><code>HTTPSRedirectMiddleware</code></li>
+<li><code>ExceptionMiddleware</code></li>
+</ul>
+</li>
+<li>Routing</li>
+<li>Endpoint</li>
+</ul>
+<p>The following middleware implementations are available in the Starlette package:</p>
+<h2 id="corsmiddleware">CORSMiddleware</h2>
+<p>Adds appropriate <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS headers</a> to outgoing responses in order to allow cross-origin requests from browsers.</p>
+<p>The default parameters used by the CORSMiddleware implementation are restrictive by default,
+so you'll need to explicitly enable particular origins, methods, or headers, in order
+for browsers to be permitted to use them in a Cross-Domain context.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.applications</span> <span class="kn">import</span> <span class="n">Starlette</span>
+<span class="kn">from</span> <span class="nn">starlette.middleware</span> <span class="kn">import</span> <span class="n">Middleware</span>
+<span class="kn">from</span> <span class="nn">starlette.middleware.cors</span> <span class="kn">import</span> <span class="n">CORSMiddleware</span>
+
+<span class="n">routes</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="n">middleware</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Middleware</span><span class="p">(</span><span class="n">CORSMiddleware</span><span class="p">,</span> <span class="n">allow_origins</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">])</span>
+<span class="p">]</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Starlette</span><span class="p">(</span><span class="n">routes</span><span class="o">=</span><span class="n">routes</span><span class="p">,</span> <span class="n">middleware</span><span class="o">=</span><span class="n">middleware</span><span class="p">)</span>
+</code></pre></div>
+<p>The following arguments are supported:</p>
+<ul>
+<li><code>allow_origins</code> - A list of origins that should be permitted to make cross-origin requests. eg. <code>['https://example.org', 'https://www.example.org']</code>. You can use <code>['*']</code> to allow any origin.</li>
+<li><code>allow_origin_regex</code> - A regex string to match against origins that should be permitted to make cross-origin requests. eg. <code>'https://.*\.example\.org'</code>.</li>
+<li><code>allow_methods</code> - A list of HTTP methods that should be allowed for cross-origin requests. Defaults to <code>['GET']</code>. You can use <code>['*']</code> to allow all standard methods.</li>
+<li><code>allow_headers</code> - A list of HTTP request headers that should be supported for cross-origin requests. Defaults to <code>[]</code>. You can use <code>['*']</code> to allow all headers. The <code>Accept</code>, <code>Accept-Language</code>, <code>Content-Language</code> and <code>Content-Type</code> headers are always allowed for CORS requests.</li>
+<li><code>allow_credentials</code> - Indicate that cookies should be supported for cross-origin requests. Defaults to <code>False</code>.</li>
+<li><code>expose_headers</code> - Indicate any response headers that should be made accessible to the browser. Defaults to <code>[]</code>.</li>
+<li><code>max_age</code> - Sets a maximum time in seconds for browsers to cache CORS responses. Defaults to <code>600</code>.</li>
+</ul>
+<p>The middleware responds to two particular types of HTTP request...</p>
+<h4 id="cors-preflight-requests">CORS preflight requests</h4>
+<p>These are any <code>OPTIONS</code> request with <code>Origin</code> and <code>Access-Control-Request-Method</code> headers.
+In this case the middleware will intercept the incoming request and respond with
+appropriate CORS headers, and either a 200 or 400 response for informational purposes.</p>
+<h4 id="simple-requests">Simple requests</h4>
+<p>Any request with an <code>Origin</code> header. In this case the middleware will pass the
+request through as normal, but will include appropriate CORS headers on the response.</p>
+<h2 id="sessionmiddleware">SessionMiddleware</h2>
+<p>Adds signed cookie-based HTTP sessions. Session information is readable but not modifiable.</p>
+<p>Access or modify the session data using the <code>request.session</code> dictionary interface.</p>
+<p>The following arguments are supported:</p>
+<ul>
+<li><code>secret_key</code> - Should be a random string.</li>
+<li><code>session_cookie</code> - Defaults to "session".</li>
+<li><code>max_age</code> - Session expiry time in seconds. Defaults to 2 weeks.</li>
+<li><code>same_site</code> - SameSite flag prevents the browser from sending session cookie along with cross-site requests. Defaults to <code>'lax'</code>.</li>
+<li><code>https_only</code> - Indicate that Secure flag should be set (can be used with HTTPS only). Defaults to <code>False</code>.</li>
+</ul>
+<h2 id="httpsredirectmiddleware">HTTPSRedirectMiddleware</h2>
+<p>Enforces that all incoming requests must either be <code>https</code> or <code>wss</code>. Any incoming
+requests to <code>http</code> or <code>ws</code> will be redirected to the secure scheme instead.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.applications</span> <span class="kn">import</span> <span class="n">Starlette</span>
+<span class="kn">from</span> <span class="nn">starlette.middleware.httpsredirect</span> <span class="kn">import</span> <span class="n">HTTPSRedirectMiddleware</span>
+
+<span class="n">routes</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="n">middleware</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Middleware</span><span class="p">(</span><span class="n">HTTPSRedirectMiddleware</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Starlette</span><span class="p">(</span><span class="n">routes</span><span class="o">=</span><span class="n">routes</span><span class="p">,</span> <span class="n">middleware</span><span class="o">=</span><span class="n">middleware</span><span class="p">)</span>
+</code></pre></div>
+<p>There are no configuration options for this middleware class.</p>
+<h2 id="trustedhostmiddleware">TrustedHostMiddleware</h2>
+<p>Enforces that all incoming requests have a correctly set <code>Host</code> header, in order
+to guard against HTTP Host Header attacks.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.applications</span> <span class="kn">import</span> <span class="n">Starlette</span>
+<span class="kn">from</span> <span class="nn">starlette.middleware</span> <span class="kn">import</span> <span class="n">Middleware</span>
+<span class="kn">from</span> <span class="nn">starlette.middleware.trustedhost</span> <span class="kn">import</span> <span class="n">TrustedHostMiddleware</span>
+
+<span class="n">routes</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="n">middleware</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Middleware</span><span class="p">(</span><span class="n">TrustedHostMiddleware</span><span class="p">,</span> <span class="n">allowed_hosts</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;*.example.com&#39;</span><span class="p">])</span>
+<span class="p">]</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Starlette</span><span class="p">(</span><span class="n">routes</span><span class="o">=</span><span class="n">routes</span><span class="p">,</span> <span class="n">middleware</span><span class="o">=</span><span class="n">middleware</span><span class="p">)</span>
+</code></pre></div>
+<p>The following arguments are supported:</p>
+<ul>
+<li><code>allowed_hosts</code> - A list of domain names that should be allowed as hostnames. Wildcard
+domains such as <code>*.example.com</code> are supported for matching subdomains. To allow any
+hostname either use <code>allowed_hosts=["*"]</code> or omit the middleware.</li>
+</ul>
+<p>If an incoming request does not validate correctly then a 400 response will be sent.</p>
+<h2 id="gzipmiddleware">GZipMiddleware</h2>
+<p>Handles GZip responses for any request that includes <code>"gzip"</code> in the <code>Accept-Encoding</code> header.</p>
+<p>The middleware will handle both standard and streaming responses.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.applications</span> <span class="kn">import</span> <span class="n">Starlette</span>
+<span class="kn">from</span> <span class="nn">starlette.middleware</span> <span class="kn">import</span> <span class="n">Middleware</span>
+<span class="kn">from</span> <span class="nn">starlette.middleware.gzip</span> <span class="kn">import</span> <span class="n">GZipMiddleware</span>
+
+
+<span class="n">routes</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="n">middleware</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Middleware</span><span class="p">(</span><span class="n">GZipMiddleware</span><span class="p">,</span> <span class="n">minimum_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Starlette</span><span class="p">(</span><span class="n">routes</span><span class="o">=</span><span class="n">routes</span><span class="p">,</span> <span class="n">middleware</span><span class="o">=</span><span class="n">middleware</span><span class="p">)</span>
+</code></pre></div>
+<p>The following arguments are supported:</p>
+<ul>
+<li><code>minimum_size</code> - Do not GZip responses that are smaller than this minimum size in bytes. Defaults to <code>500</code>.</li>
+</ul>
+<h2 id="basehttpmiddleware">BaseHTTPMiddleware</h2>
+<p>An abstract class that allows you to write ASGI middleware against a request/response
+interface, rather than dealing with ASGI messages directly.</p>
+<p>To implement a middleware class using <code>BaseHTTPMiddleware</code>, you must override the
+<code>async def dispatch(request, call_next)</code> method.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CustomHeaderMiddleware</span><span class="p">(</span><span class="n">BaseHTTPMiddleware</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">call_next</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">call_next</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Custom&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Example&#39;</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+<span class="n">middleware</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Middleware</span><span class="p">(</span><span class="n">CustomHeaderMiddleware</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Starlette</span><span class="p">(</span><span class="n">routes</span><span class="o">=</span><span class="n">routes</span><span class="p">,</span> <span class="n">middleware</span><span class="o">=</span><span class="n">middleware</span><span class="p">)</span>
+</code></pre></div>
+<p>If you want to provide configuration options to the middleware class you should
+override the <code>__init__</code> method, ensuring that the first argument is <code>app</code>, and
+any remaining arguments are optional keyword arguments. Make sure to set the <code>app</code>
+attribute on the instance if you do this.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CustomHeaderMiddleware</span><span class="p">(</span><span class="n">BaseHTTPMiddleware</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">header_value</span><span class="o">=</span><span class="s1">&#39;Example&#39;</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">header_value</span> <span class="o">=</span> <span class="n">header_value</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">call_next</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">call_next</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Custom&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">header_value</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+
+
+<span class="n">middleware</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Middleware</span><span class="p">(</span><span class="n">CustomHeaderMiddleware</span><span class="p">,</span> <span class="n">header_value</span><span class="o">=</span><span class="s1">&#39;Customized&#39;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Starlette</span><span class="p">(</span><span class="n">routes</span><span class="o">=</span><span class="n">routes</span><span class="p">,</span> <span class="n">middleware</span><span class="o">=</span><span class="n">middleware</span><span class="p">)</span>
+</code></pre></div>
+<p>Middleware classes should not modify their state outside of the <code>__init__</code> method.
+Instead you should keep any state local to the <code>dispatch</code> method, or pass it
+around explicitly, rather than mutating the middleware instance.</p>
+<h2 id="using-middleware-in-other-frameworks">Using middleware in other frameworks</h2>
+<p>To wrap ASGI middleware around other ASGI applications, you should use the
+more general pattern of wrapping the application instance:</p>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">TrustedHostMiddleware</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">allowed_hosts</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;example.com&#39;</span><span class="p">])</span>
+</code></pre></div>
+<p>You can do this with a Starlette application instance too, but it is preferable
+to use the <code>middleware=&lt;List of Middleware instances&gt;</code> style, as it will:</p>
+<ul>
+<li>Ensure that everything remains wrapped in a single outermost <code>ServerErrorMiddleware</code>.</li>
+<li>Preserves the top-level <code>app</code> instance.</li>
+</ul>
+<h2 id="third-party-middleware">Third party middleware</h2>
+<h4 id="sentrymiddleware"><a href="https://github.com/encode/sentry-asgi">SentryMiddleware</a></h4>
+<p>A middleware class for logging exceptions to <a href="https://sentry.io/">Sentry</a>.</p>
+<h4 id="proxyheadersmiddleware"><a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py">ProxyHeadersMiddleware</a></h4>
+<p>Uvicorn includes a middleware class for determining the client IP address,
+when proxy servers are being used, based on the <code>X-Forwarded-Proto</code> and <code>X-Forwarded-For</code> headers. For more complex proxy configurations, you might want to adapt this middleware.</p>
+<h4 id="timingmiddleware"><a href="https://github.com/steinnes/timing-asgi">TimingMiddleware</a></h4>
+<p>A middleware class to emit timing information (cpu and wall time) for each request which
+passes through it.  Includes examples for how to emit these timings as statsd metrics.</p>
+<h4 id="datasette-auth-github"><a href="https://github.com/simonw/datasette-auth-github">datasette-auth-github</a></h4>
+<p>This middleware adds authentication to any ASGI application, requiring users to sign in
+using their GitHub account (via <a href="https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/">OAuth</a>).
+Access can be restricted to specific users or to members of specific GitHub organizations or teams.</p>
+<h4 id="prometheusmiddleware"><a href="https://github.com/perdy/starlette-prometheus">PrometheusMiddleware</a></h4>
+<p>A middleware class for capturing Prometheus metrics related to requests and responses, including in progress requests, timing...</p>
+<h4 id="bugsnagmiddleware"><a href="https://github.com/ashinabraham/starlette-bugsnag">BugsnagMiddleware</a></h4>
+<p>A middleware class for logging exceptions to <a href="https://www.bugsnag.com/">Bugsnag</a>.</p>
+<h4 id="earlydatamiddleware"><a href="https://github.com/HarrySky/starlette-early-data">EarlyDataMiddleware</a></h4>
+<p>Middleware and decorator for detecting and denying <a href="https://tools.ietf.org/html/rfc8470">TLSv1.3 early data</a> requests.</p>
+<h4 id="authlibmiddleware"><a href="https://github.com/aogier/starlette-authlib">AuthlibMiddleware</a></h4>
+<p>A drop-in replacement for Starlette session middleware, using <a href="https://docs.authlib.org/en/latest/jose/jwt.html">authlib's jwt</a>
+module.</p>
+<h4 id="starletteopentracing"><a href="https://github.com/acidjunk/starlette-opentracing">StarletteOpentracing</a></h4>
+<p>A middleware class that emits tracing info to <a href="https://opentracing.io/">OpenTracing.io</a> compatible tracers and
+can be used to profile and monitor distributed applications.</p>
+<h4 id="ratelimitmiddleware"><a href="https://github.com/abersheeran/asgi-ratelimit">RateLimitMiddleware</a></h4>
+<p>A rate limit middleware. Regular expression matches url; flexible rules; highly customizable. Very easy to use.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="endpoints.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Endpoints" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Endpoints
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="staticfiles.html" class="md-footer__link md-footer__link--next" aria-label="Next: Static Files" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Static Files
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.76f349be.min.js"></script>
+      
+        <script src="js/chat.js"></script>
+      
+        <script src="js/sidecar-1.5.0.js"></script>
+      
+    
+  </body>
+</html>

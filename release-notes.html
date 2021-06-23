@@ -1,0 +1,2391 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The little ASGI library that shines.">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>Release Notes - Starlette</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#0150" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Starlette" class="md-header__button md-logo" aria-label="Starlette" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Starlette
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Release Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/encode/starlette" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    encode/starlette
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Starlette" class="md-nav__button md-logo" aria-label="Starlette" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Starlette
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/encode/starlette" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    encode/starlette
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="applications.html" class="md-nav__link">
+        Applications
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        Requests
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        Responses
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="websockets.html" class="md-nav__link">
+        WebSockets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        Routing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="endpoints.html" class="md-nav__link">
+        Endpoints
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        Middleware
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="staticfiles.html" class="md-nav__link">
+        Static Files
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="templates.html" class="md-nav__link">
+        Templates
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="graphql.html" class="md-nav__link">
+        GraphQL
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="schemas.html" class="md-nav__link">
+        API Schemas
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        Events
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="background.html" class="md-nav__link">
+        Background Tasks
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="server-push.html" class="md-nav__link">
+        Server Push
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exceptions.html" class="md-nav__link">
+        Exceptions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="config.html" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testclient.html" class="md-nav__link">
+        Test Client
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="third-party-packages.html" class="md-nav__link">
+        Third Party Packages
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Release Notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="release-notes.html" class="md-nav__link md-nav__link--active">
+        Release Notes
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0150" class="md-nav__link">
+    0.15.0
+  </a>
+  
+    <nav class="md-nav" aria-label="0.15.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    Added
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    Fixed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecatedremoved" class="md-nav__link">
+    Deprecated/removed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0142" class="md-nav__link">
+    0.14.2
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_1" class="md-nav__link">
+    Fixed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0141" class="md-nav__link">
+    0.14.1
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    Removed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0140" class="md-nav__link">
+    0.14.0
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_1" class="md-nav__link">
+    Added
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    Changed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0138" class="md-nav__link">
+    0.13.8
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0137" class="md-nav__link">
+    0.13.7
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0136" class="md-nav__link">
+    0.13.6
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0135" class="md-nav__link">
+    0.13.5
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0130" class="md-nav__link">
+    0.13.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01212" class="md-nav__link">
+    0.12.12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01211" class="md-nav__link">
+    0.12.11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0121" class="md-nav__link">
+    0.12.1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0120" class="md-nav__link">
+    0.12.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0111" class="md-nav__link">
+    0.11.1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110" class="md-nav__link">
+    0.11.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0106" class="md-nav__link">
+    0.10.6
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0105" class="md-nav__link">
+    0.10.5
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0104" class="md-nav__link">
+    0.10.4
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0103" class="md-nav__link">
+    0.10.3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0102" class="md-nav__link">
+    0.10.2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0101" class="md-nav__link">
+    0.10.1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0100" class="md-nav__link">
+    0.10.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0911" class="md-nav__link">
+    0.9.11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0910" class="md-nav__link">
+    0.9.10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#099" class="md-nav__link">
+    0.9.9
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#098" class="md-nav__link">
+    0.9.8
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#097" class="md-nav__link">
+    0.9.7
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#096" class="md-nav__link">
+    0.9.6
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#095" class="md-nav__link">
+    0.9.5
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#094" class="md-nav__link">
+    0.9.4
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#093" class="md-nav__link">
+    0.9.3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#092" class="md-nav__link">
+    0.9.2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#091" class="md-nav__link">
+    0.9.1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#090" class="md-nav__link">
+    0.9.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#088" class="md-nav__link">
+    0.8.8
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#087" class="md-nav__link">
+    0.8.7
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#086" class="md-nav__link">
+    0.8.6
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#085" class="md-nav__link">
+    0.8.5
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#084" class="md-nav__link">
+    0.8.4
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#083" class="md-nav__link">
+    0.8.3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#082" class="md-nav__link">
+    0.8.2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#staticfiles" class="md-nav__link">
+    StaticFiles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#081" class="md-nav__link">
+    0.8.1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#templating" class="md-nav__link">
+    Templating
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#080" class="md-nav__link">
+    0.8.0
+  </a>
+  
+    <nav class="md-nav" aria-label="0.8.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    Exceptions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sessionmiddleware" class="md-nav__link">
+    SessionMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cookies" class="md-nav__link">
+    Cookies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#staticfiles_1" class="md-nav__link">
+    StaticFiles
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#074" class="md-nav__link">
+    0.7.4
+  </a>
+  
+    <nav class="md-nav" aria-label="0.7.4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concurrency" class="md-nav__link">
+    Concurrency
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#073" class="md-nav__link">
+    0.7.3
+  </a>
+  
+    <nav class="md-nav" aria-label="0.7.3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    Routing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#072" class="md-nav__link">
+    0.7.2
+  </a>
+  
+    <nav class="md-nav" aria-label="0.7.2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#middleware" class="md-nav__link">
+    Middleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing_1" class="md-nav__link">
+    Routing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#071" class="md-nav__link">
+    0.7.1
+  </a>
+  
+    <nav class="md-nav" aria-label="0.7.1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-tracebacks" class="md-nav__link">
+    Debug tracebacks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url-routing" class="md-nav__link">
+    URL routing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-tasks" class="md-nav__link">
+    Background tasks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#070" class="md-nav__link">
+    0.7.0
+  </a>
+  
+    <nav class="md-nav" aria-label="0.7.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-schema-support" class="md-nav__link">
+    API Schema support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphql-routing" class="md-nav__link">
+    GraphQL routing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#063" class="md-nav__link">
+    0.6.3
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6.3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routing-api" class="md-nav__link">
+    Routing API
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#062" class="md-nav__link">
+    0.6.2
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6.2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sessionmiddleware_1" class="md-nav__link">
+    SessionMiddleware
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#061" class="md-nav__link">
+    0.6.1
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6.1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basehttpmiddleware" class="md-nav__link">
+    BaseHTTPMiddleware
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#060" class="md-nav__link">
+    0.6.0
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requestpath_params" class="md-nav__link">
+    request.path_params
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requesturl_for" class="md-nav__link">
+    request.url_for()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appurl_path_for" class="md-nav__link">
+    app.url_path_for()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approutes" class="md-nav__link">
+    app.routes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#route-websocketroute-mount" class="md-nav__link">
+    Route, WebSocketRoute, Mount
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0150" class="md-nav__link">
+    0.15.0
+  </a>
+  
+    <nav class="md-nav" aria-label="0.15.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    Added
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    Fixed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecatedremoved" class="md-nav__link">
+    Deprecated/removed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0142" class="md-nav__link">
+    0.14.2
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_1" class="md-nav__link">
+    Fixed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0141" class="md-nav__link">
+    0.14.1
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    Removed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0140" class="md-nav__link">
+    0.14.0
+  </a>
+  
+    <nav class="md-nav" aria-label="0.14.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_1" class="md-nav__link">
+    Added
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    Changed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0138" class="md-nav__link">
+    0.13.8
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0137" class="md-nav__link">
+    0.13.7
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0136" class="md-nav__link">
+    0.13.6
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0135" class="md-nav__link">
+    0.13.5
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0130" class="md-nav__link">
+    0.13.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01212" class="md-nav__link">
+    0.12.12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#01211" class="md-nav__link">
+    0.12.11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0121" class="md-nav__link">
+    0.12.1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0120" class="md-nav__link">
+    0.12.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0111" class="md-nav__link">
+    0.11.1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110" class="md-nav__link">
+    0.11.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0106" class="md-nav__link">
+    0.10.6
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0105" class="md-nav__link">
+    0.10.5
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0104" class="md-nav__link">
+    0.10.4
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0103" class="md-nav__link">
+    0.10.3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0102" class="md-nav__link">
+    0.10.2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0101" class="md-nav__link">
+    0.10.1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0100" class="md-nav__link">
+    0.10.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0911" class="md-nav__link">
+    0.9.11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0910" class="md-nav__link">
+    0.9.10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#099" class="md-nav__link">
+    0.9.9
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#098" class="md-nav__link">
+    0.9.8
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#097" class="md-nav__link">
+    0.9.7
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#096" class="md-nav__link">
+    0.9.6
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#095" class="md-nav__link">
+    0.9.5
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#094" class="md-nav__link">
+    0.9.4
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#093" class="md-nav__link">
+    0.9.3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#092" class="md-nav__link">
+    0.9.2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#091" class="md-nav__link">
+    0.9.1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#090" class="md-nav__link">
+    0.9.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#088" class="md-nav__link">
+    0.8.8
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#087" class="md-nav__link">
+    0.8.7
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#086" class="md-nav__link">
+    0.8.6
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#085" class="md-nav__link">
+    0.8.5
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#084" class="md-nav__link">
+    0.8.4
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#083" class="md-nav__link">
+    0.8.3
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#082" class="md-nav__link">
+    0.8.2
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#staticfiles" class="md-nav__link">
+    StaticFiles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#081" class="md-nav__link">
+    0.8.1
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#templating" class="md-nav__link">
+    Templating
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#080" class="md-nav__link">
+    0.8.0
+  </a>
+  
+    <nav class="md-nav" aria-label="0.8.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    Exceptions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sessionmiddleware" class="md-nav__link">
+    SessionMiddleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cookies" class="md-nav__link">
+    Cookies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#staticfiles_1" class="md-nav__link">
+    StaticFiles
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#074" class="md-nav__link">
+    0.7.4
+  </a>
+  
+    <nav class="md-nav" aria-label="0.7.4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#concurrency" class="md-nav__link">
+    Concurrency
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#073" class="md-nav__link">
+    0.7.3
+  </a>
+  
+    <nav class="md-nav" aria-label="0.7.3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    Routing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#072" class="md-nav__link">
+    0.7.2
+  </a>
+  
+    <nav class="md-nav" aria-label="0.7.2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#middleware" class="md-nav__link">
+    Middleware
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing_1" class="md-nav__link">
+    Routing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#071" class="md-nav__link">
+    0.7.1
+  </a>
+  
+    <nav class="md-nav" aria-label="0.7.1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-tracebacks" class="md-nav__link">
+    Debug tracebacks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url-routing" class="md-nav__link">
+    URL routing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-tasks" class="md-nav__link">
+    Background tasks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#070" class="md-nav__link">
+    0.7.0
+  </a>
+  
+    <nav class="md-nav" aria-label="0.7.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-schema-support" class="md-nav__link">
+    API Schema support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphql-routing" class="md-nav__link">
+    GraphQL routing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#063" class="md-nav__link">
+    0.6.3
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6.3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routing-api" class="md-nav__link">
+    Routing API
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#062" class="md-nav__link">
+    0.6.2
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6.2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sessionmiddleware_1" class="md-nav__link">
+    SessionMiddleware
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#061" class="md-nav__link">
+    0.6.1
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6.1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basehttpmiddleware" class="md-nav__link">
+    BaseHTTPMiddleware
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#060" class="md-nav__link">
+    0.6.0
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requestpath_params" class="md-nav__link">
+    request.path_params
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requesturl_for" class="md-nav__link">
+    request.url_for()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appurl_path_for" class="md-nav__link">
+    app.url_path_for()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approutes" class="md-nav__link">
+    app.routes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#route-websocketroute-mount" class="md-nav__link">
+    Route, WebSocketRoute, Mount
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Release Notes</h1>
+                
+                <h2 id="0150">0.15.0</h2>
+<p>June 23, 2021</p>
+<p>This release includes major changes to the low-level asynchronous parts of Starlette. As a result,
+<strong>Starlette now depends on <a href="https://anyio.readthedocs.io/en/stable/">AnyIO</a></strong> and some minor API
+changes have occurred. Another significant change with this release is the
+<strong>deprecation of built-in GraphQL support</strong>.</p>
+<h3 id="added">Added</h3>
+<ul>
+<li>Starlette now supports <a href="https://trio.readthedocs.io/en/stable/">Trio</a> as an async runtime via
+  AnyIO - <a href="https://github.com/encode/starlette/pull/1157">#1157</a>.</li>
+<li><code>TestClient.websocket_connect()</code> now must be used as a context manager.</li>
+<li>Initial support for Python 3.10 - <a href="https://github.com/encode/starlette/pull/1201">#1201</a>.</li>
+<li>The compression level used in <code>GZipMiddleware</code> is now adjustable -
+  <a href="https://github.com/encode/starlette/pull/1128">#1128</a>.</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>Several fixes to <code>CORSMiddleware</code>. See <a href="https://github.com/encode/starlette/pull/1111">#1111</a>,
+  <a href="https://github.com/encode/starlette/pull/1112">#1112</a>,
+  <a href="https://github.com/encode/starlette/pull/1113">#1113</a>,
+  <a href="https://github.com/encode/starlette/pull/1199">#1199</a>.</li>
+<li>Improved exception messages in the case of duplicated path parameter names -
+  <a href="https://github.com/encode/starlette/pull/1177">#1177</a>.</li>
+<li><code>RedirectResponse</code> now uses <code>quote</code> instead of <code>quote_plus</code> encoding for the <code>Location</code> header
+  to better match the behaviour in other frameworks such as Django -
+  <a href="https://github.com/encode/starlette/pull/1164">#1164</a>.</li>
+<li>Exception causes are now preserved in more cases -
+  <a href="https://github.com/encode/starlette/pull/1158">#1158</a>.</li>
+<li>Session cookies now use the ASGI root path in the case of mounted applications -
+  <a href="https://github.com/encode/starlette/pull/1147">#1147</a>.</li>
+<li>Fixed a cache invalidation bug when static files were deleted in certain circumstances -
+  <a href="https://github.com/encode/starlette/pull/1023">#1023</a>.</li>
+<li>Improved memory usage of <code>BaseHTTPMiddleware</code> when handling large responses -
+  <a href="https://github.com/encode/starlette/issues/1012">#1012</a> fixed via #1157</li>
+</ul>
+<h3 id="deprecatedremoved">Deprecated/removed</h3>
+<ul>
+<li>Built-in GraphQL support via the <code>GraphQLApp</code> class has been deprecated and will be removed in a
+  future release. Please see <a href="https://github.com/encode/starlette/issues/619">#619</a>. GraphQL is not
+  supported on Python 3.10.</li>
+<li>The <code>executor</code> parameter to <code>GraphQLApp</code> was removed. Use <code>executor_class</code> instead.</li>
+<li>The <code>workers</code> parameter to <code>WSGIMiddleware</code> was removed. This hasn't had any effect since
+  Starlette v0.6.3.</li>
+</ul>
+<h2 id="0142">0.14.2</h2>
+<p>February 2, 2021</p>
+<h3 id="fixed_1">Fixed</h3>
+<ul>
+<li>Fixed <code>ServerErrorMiddleware</code> compatibility with Python 3.9.1/3.8.7 when debug mode is enabled -
+  <a href="https://github.com/encode/starlette/pull/1132">#1132</a>.</li>
+<li>Fixed unclosed socket <code>ResourceWarning</code>s when using the <code>TestClient</code> with WebSocket endpoints -
+  #1132.</li>
+<li>Improved detection of <code>async</code> endpoints wrapped in <code>functools.partial</code> on Python 3.8+ -
+  <a href="https://github.com/encode/starlette/pull/1106">#1106</a>.</li>
+</ul>
+<h2 id="0141">0.14.1</h2>
+<p>November 9th, 2020</p>
+<h3 id="removed">Removed</h3>
+<ul>
+<li><code>UJSONResponse</code> was removed (this change was intended to be included in 0.14.0). Please see the
+  <a href="https://www.starlette.io/responses/#custom-json-serialization">documentation</a> for how to
+  implement responses using custom JSON serialization -
+  <a href="https://github.com/encode/starlette/pull/1047">#1074</a>.</li>
+</ul>
+<h2 id="0140">0.14.0</h2>
+<p>November 8th, 2020</p>
+<h3 id="added_1">Added</h3>
+<ul>
+<li>Starlette now officially supports Python3.9.</li>
+<li>In <code>StreamingResponse</code>, allow custom async iterator such as objects from classes implementing <code>__aiter__</code>.</li>
+<li>Allow usage of <code>functools.partial</code> async handlers in Python versions 3.6 and 3.7.</li>
+<li>Add 418 I'm A Teapot status code.</li>
+</ul>
+<h3 id="changed">Changed</h3>
+<ul>
+<li>Create tasks from handler coroutines before sending them to <code>asyncio.wait</code>.</li>
+<li>Use <code>format_exception</code> instead of <code>format_tb</code> in <code>ServerErrorMiddleware</code>'s <code>debug</code> responses.</li>
+<li>Be more lenient with handler arguments when using the <code>requires</code> decorator.</li>
+</ul>
+<h2 id="0138">0.13.8</h2>
+<ul>
+<li>
+<p>Revert <code>Queue(maxsize=1)</code> fix for <code>BaseHTTPMiddleware</code> middleware classes and streaming responses.</p>
+</li>
+<li>
+<p>The <code>StaticFiles</code> constructor now allows <code>pathlib.Path</code> in addition to strings for its <code>directory</code> argument.</p>
+</li>
+</ul>
+<h2 id="0137">0.13.7</h2>
+<ul>
+<li>Fix high memory usage when using <code>BaseHTTPMiddleware</code> middleware classes and streaming responses.</li>
+</ul>
+<h2 id="0136">0.13.6</h2>
+<ul>
+<li>Fix 404 errors with <code>StaticFiles</code>.</li>
+</ul>
+<h2 id="0135">0.13.5</h2>
+<ul>
+<li>Add support for <code>Starlette(lifespan=...)</code> functions.</li>
+<li>More robust path-traversal check in StaticFiles app.</li>
+<li>Fix WSGI PATH_INFO encoding.</li>
+<li>RedirectResponse now accepts optional background parameter</li>
+<li>Allow path routes to contain regex meta characters</li>
+<li>Treat ASGI HTTP 'body' as an optional key.</li>
+<li>Don't use thread pooling for writing to in-memory upload files.</li>
+</ul>
+<h2 id="0130">0.13.0</h2>
+<ul>
+<li>Switch to promoting application configuration on init style everywhere.
+  This means dropping the decorator style in favour of declarative routing
+  tables and middleware definitions.</li>
+</ul>
+<h2 id="01212">0.12.12</h2>
+<ul>
+<li>Fix <code>request.url_for()</code> for the Mount-within-a-Mount case.</li>
+</ul>
+<h2 id="01211">0.12.11</h2>
+<ul>
+<li>Fix <code>request.url_for()</code> when an ASGI <code>root_path</code> is being used.</li>
+</ul>
+<h2 id="0121">0.12.1</h2>
+<ul>
+<li>Add <code>URL.include_query_params(**kwargs)</code></li>
+<li>Add <code>URL.replace_query_params(**kwargs)</code></li>
+<li>Add <code>URL.remove_query_params(param_names)</code></li>
+<li><code>request.state</code> properly persisting across middleware.</li>
+<li>Added <code>request.scope</code> interface.</li>
+</ul>
+<h2 id="0120">0.12.0</h2>
+<ul>
+<li>Switch to ASGI 3.0.</li>
+<li>Fixes to CORS middleware.</li>
+<li>Add <code>StaticFiles(html=True)</code> support.</li>
+<li>Fix path quoting in redirect responses.</li>
+</ul>
+<h2 id="0111">0.11.1</h2>
+<ul>
+<li>Add <code>request.state</code> interface, for storing arbitrary additional information.</li>
+<li>Support disabling GraphiQL with <code>GraphQLApp(..., graphiql=False)</code>.</li>
+</ul>
+<h2 id="0110">0.11.0</h2>
+<ul>
+<li><code>DatabaseMiddleware</code> is now dropped in favour of <code>databases</code></li>
+<li>Templates are no longer configured on the application instance. Use <code>templates = Jinja2Templates(directory=...)</code> and <code>return templates.TemplateResponse('index.html', {"request": request})</code></li>
+<li>Schema generation is no longer attached to the application instance. Use <code>schemas = SchemaGenerator(...)</code> and <code>return schemas.OpenAPIResponse(request=request)</code></li>
+<li><code>LifespanMiddleware</code> is dropped in favor of router-based lifespan handling.</li>
+<li>Application instances now accept a <code>routes</code> argument, <code>Starlette(routes=[...])</code></li>
+<li>Schema generation now includes mounted routes.</li>
+</ul>
+<h2 id="0106">0.10.6</h2>
+<ul>
+<li>Add <code>Lifespan</code> routing component.</li>
+</ul>
+<h2 id="0105">0.10.5</h2>
+<ul>
+<li>Ensure <code>templating</code> does not strictly require <code>jinja2</code> to be installed.</li>
+</ul>
+<h2 id="0104">0.10.4</h2>
+<ul>
+<li>Templates are now configured independently from the application instance. <code>templates = Jinja2Templates(directory=...)</code>. Existing API remains in place, but is no longer documented,
+and will be deprecated in due course. See the template documentation for more details.</li>
+</ul>
+<h2 id="0103">0.10.3</h2>
+<ul>
+<li>Move to independent <code>databases</code> package instead of <code>DatabaseMiddleware</code>. Existing API
+remains in place, but is no longer documented, and will be deprecated in due course.</li>
+</ul>
+<h2 id="0102">0.10.2</h2>
+<ul>
+<li>Don't drop explicit port numbers on redirects from <code>HTTPSRedirectMiddleware</code>.</li>
+</ul>
+<h2 id="0101">0.10.1</h2>
+<ul>
+<li>Add MySQL database support.</li>
+<li>Add host-based routing.</li>
+</ul>
+<h2 id="0100">0.10.0</h2>
+<ul>
+<li>WebSockets now default to sending/receiving JSON over text data frames. Use <code>.send_json(data, mode="binary")</code> and <code>.receive_json(mode="binary")</code> for binary framing.</li>
+<li><code>GraphQLApp</code> now takes an <code>executor_class</code> argument, which should be used in preference to the existing <code>executor</code> argument. Resolves an issue with async executors being instantiated before the event loop was setup. The <code>executor</code> argument is expected to be deprecated in the next median or major release.</li>
+<li>Authentication and the <code>@requires</code> decorator now support WebSocket endpoints.</li>
+<li><code>MultiDict</code> and <code>ImmutableMultiDict</code> classes are available in <code>uvicorn.datastructures</code>.</li>
+<li><code>QueryParams</code> is now instantiated with standard dict-style <code>*args, **kwargs</code> arguments.</li>
+</ul>
+<h2 id="0911">0.9.11</h2>
+<ul>
+<li>Session cookies now include browser 'expires', in addition to the existing signed expiry.</li>
+<li><code>request.form()</code> now returns a multi-dict interface.</li>
+<li>The query parameter multi-dict implementation now mirrors <code>dict</code> more correctly for the
+behavior of <code>.keys()</code>, <code>.values()</code>, and <code>.items()</code> when multiple same-key items occur.</li>
+<li>Use <code>urlsplit</code> throughout in favor of <code>urlparse</code>.</li>
+</ul>
+<h2 id="0910">0.9.10</h2>
+<ul>
+<li>Support <code>@requires(...)</code> on class methods.</li>
+<li>Apply URL escaping to form data.</li>
+<li>Support <code>HEAD</code> requests automatically.</li>
+<li>Add <code>await request.is_disconnected()</code>.</li>
+<li>Pass operationName to GraphQL executor.</li>
+</ul>
+<h2 id="099">0.9.9</h2>
+<ul>
+<li>Add <code>TemplateResponse</code>.</li>
+<li>Add <code>CommaSeparatedStrings</code> datatype.</li>
+<li>Add <code>BackgroundTasks</code> for multiple tasks.</li>
+<li>Common subclass for <code>Request</code> and <code>WebSocket</code>, to eg. share <code>session</code> functionality.</li>
+<li>Expose remote address with <code>request.client</code>.</li>
+</ul>
+<h2 id="098">0.9.8</h2>
+<ul>
+<li>Add <code>request.database.executemany</code>.</li>
+</ul>
+<h2 id="097">0.9.7</h2>
+<ul>
+<li>Ensure that <code>AuthenticationMiddleware</code> handles lifespan messages correctly.</li>
+</ul>
+<h2 id="096">0.9.6</h2>
+<ul>
+<li>Add <code>AuthenticationMiddleware</code>, and <code>@requires()</code> decorator.</li>
+</ul>
+<h2 id="095">0.9.5</h2>
+<ul>
+<li>Support either <code>str</code> or <code>Secret</code> for <code>SessionMiddleware(secret_key=...)</code>.</li>
+</ul>
+<h2 id="094">0.9.4</h2>
+<ul>
+<li>Add <code>config.environ</code>.</li>
+<li>Add <code>datastructures.Secret</code>.</li>
+<li>Add <code>datastructures.DatabaseURL</code>.</li>
+</ul>
+<h2 id="093">0.9.3</h2>
+<ul>
+<li>Add <code>config.Config(".env")</code></li>
+</ul>
+<h2 id="092">0.9.2</h2>
+<ul>
+<li>Add optional database support.</li>
+<li>Add <code>request</code> to GraphQL context.</li>
+<li>Hide any password component in <code>URL.__repr__</code>.</li>
+</ul>
+<h2 id="091">0.9.1</h2>
+<ul>
+<li>Handle startup/shutdown errors properly.</li>
+</ul>
+<h2 id="090">0.9.0</h2>
+<ul>
+<li><code>TestClient</code> can now be used as a context manager, instead of <code>LifespanContext</code>.</li>
+<li>Lifespan is now handled as middleware. Startup and Shutdown events are
+visible throughout the middleware stack.</li>
+</ul>
+<h2 id="088">0.8.8</h2>
+<ul>
+<li>Better support for third-party API schema generators.</li>
+</ul>
+<h2 id="087">0.8.7</h2>
+<ul>
+<li>Support chunked requests with TestClient.</li>
+<li>Cleanup asyncio tasks properly with WSGIMiddleware.</li>
+<li>Support using TestClient within endpoints, for service mocking.</li>
+</ul>
+<h2 id="086">0.8.6</h2>
+<ul>
+<li>Session cookies are now set on the root path.</li>
+</ul>
+<h2 id="085">0.8.5</h2>
+<ul>
+<li>Support URL convertors.</li>
+<li>Support HTTP 304 cache responses from <code>StaticFiles</code>.</li>
+<li>Resolve character escaping issue with form data.</li>
+</ul>
+<h2 id="084">0.8.4</h2>
+<ul>
+<li>Default to empty body on responses.</li>
+</ul>
+<h2 id="083">0.8.3</h2>
+<ul>
+<li>Add 'name' argument to <code>@app.route()</code>.</li>
+<li>Use 'Host' header for URL reconstruction.</li>
+</ul>
+<h2 id="082">0.8.2</h2>
+<h2 id="staticfiles">StaticFiles</h2>
+<ul>
+<li>StaticFiles no longer reads the file for responses to <code>HEAD</code> requests.</li>
+</ul>
+<h2 id="081">0.8.1</h2>
+<h2 id="templating">Templating</h2>
+<ul>
+<li>Add a default templating configuration with Jinja2.</li>
+</ul>
+<p>Allows the following:</p>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">Starlette</span><span class="p">(</span><span class="n">template_directory</span><span class="o">=</span><span class="s2">&quot;templates&quot;</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">homepage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c1"># `url_for` is available inside the template.</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">HTMLResponse</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="080">0.8.0</h2>
+<h3 id="exceptions">Exceptions</h3>
+<ul>
+<li>Add support for <code>@app.exception_handler(404)</code>.</li>
+<li>Ensure handled exceptions are not seen as errors by the middleware stack.</li>
+</ul>
+<h3 id="sessionmiddleware">SessionMiddleware</h3>
+<ul>
+<li>Add <code>max_age</code>, and use timestamp-signed cookies. Defaults to two weeks.</li>
+</ul>
+<h3 id="cookies">Cookies</h3>
+<ul>
+<li>Ensure cookies are strictly HTTP correct.</li>
+</ul>
+<h3 id="staticfiles_1">StaticFiles</h3>
+<ul>
+<li>Check directory exists on instantiation.</li>
+</ul>
+<h2 id="074">0.7.4</h2>
+<h3 id="concurrency">Concurrency</h3>
+<ul>
+<li>Add <code>starlette.concurrency.run_in_threadpool</code>. Now handles <code>contextvar</code> support.</li>
+</ul>
+<h2 id="073">0.7.3</h2>
+<h3 id="routing">Routing</h3>
+<ul>
+<li>Add <code>name=</code> support to <code>app.mount()</code>. This allows eg: <code>app.mount('/static', StaticFiles(directory='static'), name='static')</code>.</li>
+</ul>
+<h2 id="072">0.7.2</h2>
+<h3 id="middleware">Middleware</h3>
+<ul>
+<li>Add support for <code>@app.middleware("http")</code> decorator.</li>
+</ul>
+<h3 id="routing_1">Routing</h3>
+<ul>
+<li>Add "endpoint" to ASGI scope.</li>
+</ul>
+<h2 id="071">0.7.1</h2>
+<h3 id="debug-tracebacks">Debug tracebacks</h3>
+<ul>
+<li>Improve debug traceback information &amp; styling.</li>
+</ul>
+<h3 id="url-routing">URL routing</h3>
+<ul>
+<li>Support mounted URL lookups with "path=", eg. <code>url_for('static', path=...)</code>.</li>
+<li>Support nested URL lookups, eg. <code>url_for('admin:user', username=...)</code>.</li>
+<li>Add redirect slashes support.</li>
+<li>Add www redirect support.</li>
+</ul>
+<h3 id="background-tasks">Background tasks</h3>
+<ul>
+<li>Add background task support to <code>FileResponse</code> and <code>StreamingResponse</code>.</li>
+</ul>
+<h2 id="070">0.7.0</h2>
+<h3 id="api-schema-support">API Schema support</h3>
+<ul>
+<li>Add <code>app.schema_generator = SchemaGenerator(...)</code>.</li>
+<li>Add <code>app.schema</code> property.</li>
+<li>Add <code>OpenAPIResponse(...)</code>.</li>
+</ul>
+<h3 id="graphql-routing">GraphQL routing</h3>
+<ul>
+<li>Drop <code>app.add_graphql_route("/", ...)</code> in favor of more consistent <code>app.add_route("/", GraphQLApp(...))</code>.</li>
+</ul>
+<h2 id="063">0.6.3</h2>
+<h3 id="routing-api">Routing API</h3>
+<ul>
+<li>Support routing to methods.</li>
+<li>Ensure <code>url_path_for</code> works with Mount('/{some_path_params}').</li>
+<li>Fix Router(default=) argument.</li>
+<li>Support repeated paths, like: <code>@app.route("/", methods=["GET"])</code>, <code>@app.route("/", methods=["POST"])</code></li>
+<li>Use the default ThreadPoolExecutor for all sync endpoints.</li>
+</ul>
+<h2 id="062">0.6.2</h2>
+<h3 id="sessionmiddleware_1">SessionMiddleware</h3>
+<p>Added support for <code>request.session</code>, with <code>SessionMiddleware</code>.</p>
+<h2 id="061">0.6.1</h2>
+<h3 id="basehttpmiddleware">BaseHTTPMiddleware</h3>
+<p>Added support for <code>BaseHTTPMiddleware</code>, which provides a standard
+request/response interface over a regular ASGI middleware.</p>
+<p>This means you can write ASGI middleware while still working at
+a request/response level, rather than handling ASGI messages directly.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.applications</span> <span class="kn">import</span> <span class="n">Starlette</span>
+<span class="kn">from</span> <span class="nn">starlette.middleware.base</span> <span class="kn">import</span> <span class="n">BaseHTTPMiddleware</span>
+
+
+<span class="k">class</span> <span class="nc">CustomMiddleware</span><span class="p">(</span><span class="n">BaseHTTPMiddleware</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">call_next</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">call_next</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Custom-Header&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Example&#39;</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Starlette</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span><span class="n">CustomMiddleware</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="060">0.6.0</h2>
+<h3 id="requestpath_params">request.path_params</h3>
+<p>The biggest change in 0.6 is that endpoint signatures are no longer:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span>
+</code></pre></div>
+<p>Instead we just use:</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span>
+</code></pre></div>
+<p>The path parameters are available on the request as <code>request.path_params</code>.</p>
+<p>This is different to most Python webframeworks, but I think it actually ends up
+being much more nicely consistent all the way through.</p>
+<h3 id="requesturl_for">request.url_for()</h3>
+<p>Request and WebSocketSession now support URL reversing with <code>request.url_for(name, **path_params)</code>.
+This method returns a fully qualified <code>URL</code> instance.
+The URL instance is a string-like object.</p>
+<h3 id="appurl_path_for">app.url_path_for()</h3>
+<p>Applications now support URL path reversing with <code>app.url_path_for(name, **path_params)</code>.
+This method returns a <code>URL</code> instance with the path and scheme set.
+The URL instance is a string-like object, and will return only the path if coerced to a string.</p>
+<h3 id="approutes">app.routes</h3>
+<p>Applications now support a <code>.routes</code> parameter, which returns a list of <code>[Route|WebSocketRoute|Mount]</code>.</p>
+<h3 id="route-websocketroute-mount">Route, WebSocketRoute, Mount</h3>
+<p>The low level components to <code>Router</code> now match the <code>@app.route()</code>, <code>@app.websocket_route()</code>, and <code>app.mount()</code> signatures.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="third-party-packages.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Third Party Packages" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Third Party Packages
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.76f349be.min.js"></script>
+      
+        <script src="js/chat.js"></script>
+      
+        <script src="js/sidecar-1.5.0.js"></script>
+      
+    
+  </body>
+</html>

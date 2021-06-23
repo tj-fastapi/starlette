@@ -1,0 +1,1020 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The little ASGI library that shines.">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
+    
+    
+      
+        <title>Responses - Starlette</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#response" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Starlette" class="md-header__button md-logo" aria-label="Starlette" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Starlette
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Responses
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/encode/starlette" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    encode/starlette
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Starlette" class="md-nav__button md-logo" aria-label="Starlette" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Starlette
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/encode/starlette" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    encode/starlette
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="applications.html" class="md-nav__link">
+        Applications
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        Requests
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Responses
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="responses.html" class="md-nav__link md-nav__link--active">
+        Responses
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    Response
+  </a>
+  
+    <nav class="md-nav" aria-label="Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-cookie" class="md-nav__link">
+    Set Cookie
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-cookie" class="md-nav__link">
+    Delete Cookie
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#htmlresponse" class="md-nav__link">
+    HTMLResponse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plaintextresponse" class="md-nav__link">
+    PlainTextResponse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jsonresponse" class="md-nav__link">
+    JSONResponse
+  </a>
+  
+    <nav class="md-nav" aria-label="JSONResponse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-json-serialization" class="md-nav__link">
+    Custom JSON serialization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redirectresponse" class="md-nav__link">
+    RedirectResponse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamingresponse" class="md-nav__link">
+    StreamingResponse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fileresponse" class="md-nav__link">
+    FileResponse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#third-party-middleware" class="md-nav__link">
+    Third party middleware
+  </a>
+  
+    <nav class="md-nav" aria-label="Third party middleware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sseresponseeventsourceresponse" class="md-nav__link">
+    SSEResponse(EventSourceResponse)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="websockets.html" class="md-nav__link">
+        WebSockets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        Routing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="endpoints.html" class="md-nav__link">
+        Endpoints
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        Middleware
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="staticfiles.html" class="md-nav__link">
+        Static Files
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="templates.html" class="md-nav__link">
+        Templates
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="graphql.html" class="md-nav__link">
+        GraphQL
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="schemas.html" class="md-nav__link">
+        API Schemas
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        Events
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="background.html" class="md-nav__link">
+        Background Tasks
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="server-push.html" class="md-nav__link">
+        Server Push
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exceptions.html" class="md-nav__link">
+        Exceptions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="config.html" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testclient.html" class="md-nav__link">
+        Test Client
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="third-party-packages.html" class="md-nav__link">
+        Third Party Packages
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes.html" class="md-nav__link">
+        Release Notes
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    Response
+  </a>
+  
+    <nav class="md-nav" aria-label="Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-cookie" class="md-nav__link">
+    Set Cookie
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-cookie" class="md-nav__link">
+    Delete Cookie
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#htmlresponse" class="md-nav__link">
+    HTMLResponse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plaintextresponse" class="md-nav__link">
+    PlainTextResponse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jsonresponse" class="md-nav__link">
+    JSONResponse
+  </a>
+  
+    <nav class="md-nav" aria-label="JSONResponse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-json-serialization" class="md-nav__link">
+    Custom JSON serialization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redirectresponse" class="md-nav__link">
+    RedirectResponse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streamingresponse" class="md-nav__link">
+    StreamingResponse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fileresponse" class="md-nav__link">
+    FileResponse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#third-party-middleware" class="md-nav__link">
+    Third party middleware
+  </a>
+  
+    <nav class="md-nav" aria-label="Third party middleware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sseresponseeventsourceresponse" class="md-nav__link">
+    SSEResponse(EventSourceResponse)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Responses</h1>
+                
+                <p>Starlette includes a few response classes that handle sending back the
+appropriate ASGI messages on the <code>send</code> channel.</p>
+<h3 id="response">Response</h3>
+<p>Signature: <code>Response(content, status_code=200, headers=None, media_type=None)</code></p>
+<ul>
+<li><code>content</code> - A string or bytestring.</li>
+<li><code>status_code</code> - An integer HTTP status code.</li>
+<li><code>headers</code> - A dictionary of strings.</li>
+<li><code>media_type</code> - A string giving the media type. eg. "text/html"</li>
+</ul>
+<p>Starlette will automatically include a Content-Length header. It will also
+include a Content-Type header, based on the media_type and appending a charset
+for text types.</p>
+<p>Once you've instantiated a response, you can send it by calling it as an
+ASGI application instance.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">Response</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">scope</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;http&#39;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">Response</span><span class="p">(</span><span class="s1">&#39;Hello, world!&#39;</span><span class="p">,</span> <span class="n">media_type</span><span class="o">=</span><span class="s1">&#39;text/plain&#39;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">response</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="set-cookie">Set Cookie</h4>
+<p>Starlette provides a <code>set_cookie</code> method to allow you to set cookies on the response object.</p>
+<p>Signature: <code>Response.set_cookie(key, value, max_age=None, expires=None, path="/", domain=None, secure=False, httponly=False, samesite="lax")</code></p>
+<ul>
+<li><code>key</code> - A string that will be the cookie's key.</li>
+<li><code>value</code> - A string that will be the cookie's value.</li>
+<li><code>max_age</code> - An integer that defines the lifetime of the cookie in seconds. A negative integer or a value of <code>0</code> will discard the cookie immediately. <code>Optional</code></li>
+<li><code>expires</code> - An integer that defines the number of seconds until the cookie expires. <code>Optional</code></li>
+<li><code>path</code> - A string that specifies the subset of routes to which the cookie will apply. <code>Optional</code></li>
+<li><code>domain</code> - A string that specifies the domain for which the cookie is valid. <code>Optional</code></li>
+<li><code>secure</code> - A bool indicating that the cookie will only be sent to the server if request is made using SSL and the HTTPS protocol. <code>Optional</code></li>
+<li><code>httponly</code> - A bool indicating that the cookie cannot be accessed via JavaScript through <code>Document.cookie</code> property, the <code>XMLHttpRequest</code> or <code>Request</code> APIs. <code>Optional</code></li>
+<li><code>samesite</code> - A string that specifies the samesite strategy for the cookie. Valid values are <code>'lax'</code>, <code>'strict'</code> and <code>'none'</code>. Defaults to <code>'lax'</code>. <code>Optional</code></li>
+</ul>
+<h4 id="delete-cookie">Delete Cookie</h4>
+<p>Conversly, Starlette also provides a <code>delete_cookie</code> method to manually expire a set cookie.</p>
+<p>Signature: <code>Response.delete_cookie(key, path='/', domain=None)</code></p>
+<h3 id="htmlresponse">HTMLResponse</h3>
+<p>Takes some text or bytes and returns an HTML response.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">HTMLResponse</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">scope</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;http&#39;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">HTMLResponse</span><span class="p">(</span><span class="s1">&#39;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello, world!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&#39;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">response</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="plaintextresponse">PlainTextResponse</h3>
+<p>Takes some text or bytes and returns a plain text response.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">PlainTextResponse</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">scope</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;http&#39;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">PlainTextResponse</span><span class="p">(</span><span class="s1">&#39;Hello, world!&#39;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">response</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="jsonresponse">JSONResponse</h3>
+<p>Takes some data and returns an <code>application/json</code> encoded response.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">scope</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;http&#39;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">JSONResponse</span><span class="p">({</span><span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;world&#39;</span><span class="p">})</span>
+    <span class="k">await</span> <span class="n">response</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="custom-json-serialization">Custom JSON serialization</h4>
+<p>If you need fine-grained control over JSON serialization, you can subclass
+<code>JSONResponse</code> and override the <code>render</code> method.</p>
+<p>For example, if you wanted to use a third-party JSON library such as
+<a href="https://pypi.org/project/orjson/">orjson</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span> <span class="nn">orjson</span>
+<span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
+
+
+<span class="k">class</span> <span class="nc">OrjsonResponse</span><span class="p">(</span><span class="n">JSONResponse</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">orjson</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+<p>In general you <em>probably</em> want to stick with <code>JSONResponse</code> by default unless
+you are micro-optimising a particular endpoint or need to serialize non-standard
+object types.</p>
+<h3 id="redirectresponse">RedirectResponse</h3>
+<p>Returns an HTTP redirect. Uses a 307 status code by default.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">PlainTextResponse</span><span class="p">,</span> <span class="n">RedirectResponse</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">scope</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;http&#39;</span>
+    <span class="k">if</span> <span class="n">scope</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">RedirectResponse</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">PlainTextResponse</span><span class="p">(</span><span class="s1">&#39;Hello, world!&#39;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">response</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="streamingresponse">StreamingResponse</h3>
+<p>Takes an async generator or a normal generator/iterator and streams the response body.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">StreamingResponse</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">slow_numbers</span><span class="p">(</span><span class="n">minimum</span><span class="p">,</span> <span class="n">maximum</span><span class="p">):</span>
+    <span class="k">yield</span><span class="p">(</span><span class="s1">&#39;&lt;html&gt;&lt;body&gt;&lt;ul&gt;&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">minimum</span><span class="p">,</span> <span class="n">maximum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="s1">&#39;&lt;li&gt;</span><span class="si">%d</span><span class="s1">&lt;/li&gt;&#39;</span> <span class="o">%</span> <span class="n">number</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">yield</span><span class="p">(</span><span class="s1">&#39;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;&#39;</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">scope</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;http&#39;</span>
+    <span class="n">generator</span> <span class="o">=</span> <span class="n">slow_numbers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">StreamingResponse</span><span class="p">(</span><span class="n">generator</span><span class="p">,</span> <span class="n">media_type</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">response</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">)</span>
+</code></pre></div>
+<p>Have in mind that <a href="https://docs.python.org/3/glossary.html#term-file-like-object" target="_blank">file-like</a> objects (like those created by <code>open()</code>) are normal iterators. So, you can return them directly in a <code>StreamingResponse</code>.</p>
+<h3 id="fileresponse">FileResponse</h3>
+<p>Asynchronously streams a file as the response.</p>
+<p>Takes a different set of arguments to instantiate than the other response types:</p>
+<ul>
+<li><code>path</code> - The filepath to the file to stream.</li>
+<li><code>headers</code> - Any custom headers to include, as a dictionary.</li>
+<li><code>media_type</code> - A string giving the media type. If unset, the filename or path will be used to infer a media type.</li>
+<li><code>filename</code> - If set, this will be included in the response <code>Content-Disposition</code>.</li>
+</ul>
+<p>File responses will include appropriate <code>Content-Length</code>, <code>Last-Modified</code> and <code>ETag</code> headers.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">FileResponse</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">app</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">scope</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;http&#39;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">FileResponse</span><span class="p">(</span><span class="s1">&#39;statics/favicon.ico&#39;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">response</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">receive</span><span class="p">,</span> <span class="n">send</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="third-party-middleware">Third party middleware</h2>
+<h3 id="sseresponseeventsourceresponse"><a href="https://github.com/sysid/sse-starlette">SSEResponse(EventSourceResponse)</a></h3>
+<p>Server Sent Response implements the ServerSentEvent Protocol: https://www.w3.org/TR/2009/WD-eventsource-20090421.<br />
+It enables event streaming from the server to the client without the complexity of websockets.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="requests.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Requests" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Requests
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="websockets.html" class="md-footer__link md-footer__link--next" aria-label="Next: WebSockets" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              WebSockets
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.76f349be.min.js"></script>
+      
+        <script src="js/chat.js"></script>
+      
+        <script src="js/sidecar-1.5.0.js"></script>
+      
+    
+  </body>
+</html>
