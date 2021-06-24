@@ -11,19 +11,21 @@
       
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+        <link rel="canonical" href="https://www.starlette.io/server-push/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.8">
     
     
       
-        <title>Events - Starlette</title>
+        <title>Server Push - Starlette</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ca7ac06f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ca7ac06f.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
         
       
     
@@ -55,7 +57,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
   
     
-    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -63,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#registering-events" class="md-skip">
+        <a href="#requestsend_push_promise" class="md-skip">
           Skip to content
         </a>
       
@@ -74,7 +76,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="Starlette" class="md-header__button md-logo" aria-label="Starlette" data-md-component="logo">
+    <a href=".." title="Starlette" class="md-header__button md-logo" aria-label="Starlette" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -93,7 +95,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Events
+              Server Push
             
           </span>
         </div>
@@ -167,7 +169,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="Starlette" class="md-nav__button md-logo" aria-label="Starlette" data-md-component="logo">
+    <a href=".." title="Starlette" class="md-nav__button md-logo" aria-label="Starlette" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -199,7 +201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="index.html" class="md-nav__link">
+      <a href=".." class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -214,7 +216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="applications.html" class="md-nav__link">
+      <a href="../applications/" class="md-nav__link">
         Applications
       </a>
     </li>
@@ -229,7 +231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="requests.html" class="md-nav__link">
+      <a href="../requests/" class="md-nav__link">
         Requests
       </a>
     </li>
@@ -244,7 +246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="responses.html" class="md-nav__link">
+      <a href="../responses/" class="md-nav__link">
         Responses
       </a>
     </li>
@@ -259,7 +261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="websockets.html" class="md-nav__link">
+      <a href="../websockets/" class="md-nav__link">
         WebSockets
       </a>
     </li>
@@ -274,7 +276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="routing.html" class="md-nav__link">
+      <a href="../routing/" class="md-nav__link">
         Routing
       </a>
     </li>
@@ -289,7 +291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="endpoints.html" class="md-nav__link">
+      <a href="../endpoints/" class="md-nav__link">
         Endpoints
       </a>
     </li>
@@ -304,7 +306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="middleware.html" class="md-nav__link">
+      <a href="../middleware/" class="md-nav__link">
         Middleware
       </a>
     </li>
@@ -319,7 +321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="staticfiles.html" class="md-nav__link">
+      <a href="../staticfiles/" class="md-nav__link">
         Static Files
       </a>
     </li>
@@ -334,7 +336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="templates.html" class="md-nav__link">
+      <a href="../templates/" class="md-nav__link">
         Templates
       </a>
     </li>
@@ -349,7 +351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="database.html" class="md-nav__link">
+      <a href="../database/" class="md-nav__link">
         Database
       </a>
     </li>
@@ -364,7 +366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="graphql.html" class="md-nav__link">
+      <a href="../graphql/" class="md-nav__link">
         GraphQL
       </a>
     </li>
@@ -379,7 +381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="authentication.html" class="md-nav__link">
+      <a href="../authentication/" class="md-nav__link">
         Authentication
       </a>
     </li>
@@ -394,8 +396,38 @@
   
   
     <li class="md-nav__item">
-      <a href="schemas.html" class="md-nav__link">
+      <a href="../schemas/" class="md-nav__link">
         API Schemas
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events/" class="md-nav__link">
+        Events
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background/" class="md-nav__link">
+        Background Tasks
       </a>
     </li>
   
@@ -417,12 +449,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Events
+          Server Push
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="events.html" class="md-nav__link md-nav__link--active">
-        Events
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Server Push
       </a>
       
         
@@ -438,15 +470,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#registering-events" class="md-nav__link">
-    Registering events
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-event-handlers-in-tests" class="md-nav__link">
-    Running event handlers in tests
+  <a href="#requestsend_push_promise" class="md-nav__link">
+    Request.send_push_promise
   </a>
   
 </li>
@@ -467,37 +492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="background.html" class="md-nav__link">
-        Background Tasks
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="server-push.html" class="md-nav__link">
-        Server Push
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="exceptions.html" class="md-nav__link">
+      <a href="../exceptions/" class="md-nav__link">
         Exceptions
       </a>
     </li>
@@ -512,7 +507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="config.html" class="md-nav__link">
+      <a href="../config/" class="md-nav__link">
         Configuration
       </a>
     </li>
@@ -527,7 +522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="testclient.html" class="md-nav__link">
+      <a href="../testclient/" class="md-nav__link">
         Test Client
       </a>
     </li>
@@ -542,7 +537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="third-party-packages.html" class="md-nav__link">
+      <a href="../third-party-packages/" class="md-nav__link">
         Third Party Packages
       </a>
     </li>
@@ -557,7 +552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release-notes.html" class="md-nav__link">
+      <a href="../release-notes/" class="md-nav__link">
         Release Notes
       </a>
     </li>
@@ -588,15 +583,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#registering-events" class="md-nav__link">
-    Registering events
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-event-handlers-in-tests" class="md-nav__link">
-    Running event handlers in tests
+  <a href="#requestsend_push_promise" class="md-nav__link">
+    Request.send_push_promise
   </a>
   
 </li>
@@ -614,54 +602,38 @@
               
                 
                 
-                  <h1>Events</h1>
+                  <h1>Server Push</h1>
                 
-                <p>Starlette applications can register multiple event handlers for dealing with
-code that needs to run before the application starts up, or when the application
-is shutting down.</p>
-<h2 id="registering-events">Registering events</h2>
-<p>These event handlers can either be <code>async</code> coroutines, or regular synchronous
-functions.</p>
-<p>The event handlers should be included on the application like so:</p>
+                <p>Starlette includes support for HTTP/2 and HTTP/3 server push, making it
+possible to push resources to the client to speed up page load times.</p>
+<h3 id="requestsend_push_promise"><code>Request.send_push_promise</code></h3>
+<p>Used to initiate a server push for a resource. If server push is not available
+this method does nothing.</p>
+<p>Signature: <code>send_push_promise(path)</code></p>
+<ul>
+<li><code>path</code> - A string denoting the path of the resource.</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">starlette.applications</span> <span class="kn">import</span> <span class="n">Starlette</span>
+<span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">HTMLResponse</span>
+<span class="kn">from</span> <span class="nn">starlette.routing</span> <span class="kn">import</span> <span class="n">Route</span><span class="p">,</span> <span class="n">Mount</span>
+<span class="kn">from</span> <span class="nn">starlette.staticfiles</span> <span class="kn">import</span> <span class="n">StaticFiles</span>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">some_startup_task</span><span class="p">():</span>
-    <span class="k">pass</span>
-
-<span class="k">async</span> <span class="k">def</span> <span class="nf">some_shutdown_task</span><span class="p">():</span>
-    <span class="k">pass</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">homepage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Homepage which uses server push to deliver the stylesheet.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">await</span> <span class="n">request</span><span class="o">.</span><span class="n">send_push_promise</span><span class="p">(</span><span class="s2">&quot;/static/style.css&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">HTMLResponse</span><span class="p">(</span>
+        <span class="s1">&#39;&lt;html&gt;&lt;head&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;/static/style.css&quot;/&gt;&lt;/head&gt;&lt;/html&gt;&#39;</span>
+    <span class="p">)</span>
 
 <span class="n">routes</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="o">...</span>
+    <span class="n">Route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">homepage</span><span class="p">),</span>
+    <span class="n">Mount</span><span class="p">(</span><span class="s2">&quot;/static&quot;</span><span class="p">,</span> <span class="n">StaticFiles</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s2">&quot;static&quot;</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;static&quot;</span><span class="p">)</span>
 <span class="p">]</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Starlette</span><span class="p">(</span>
-    <span class="n">routes</span><span class="o">=</span><span class="n">routes</span><span class="p">,</span>
-    <span class="n">on_startup</span><span class="o">=</span><span class="p">[</span><span class="n">some_startup_task</span><span class="p">],</span>
-    <span class="n">on_shutdown</span><span class="o">=</span><span class="p">[</span><span class="n">some_shutdown_task</span><span class="p">]</span>
-<span class="p">)</span>
-</code></pre></div>
-<p>Starlette will not start serving any incoming requests until all of the
-registered startup handlers have completed.</p>
-<p>The shutdown handlers will run once all connections have been closed, and
-any in-process background tasks have completed.</p>
-<h2 id="running-event-handlers-in-tests">Running event handlers in tests</h2>
-<p>You might want to explicitly call into your event handlers in any test setup
-or test teardown code.</p>
-<p>Alternatively, you can use <code>TestClient</code> as a context manager, to ensure that
-startup and shutdown events are called.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">example</span> <span class="kn">import</span> <span class="n">app</span>
-<span class="kn">from</span> <span class="nn">starlette.testclient</span> <span class="kn">import</span> <span class="n">TestClient</span>
-
-
-<span class="k">def</span> <span class="nf">test_homepage</span><span class="p">():</span>
-    <span class="k">with</span> <span class="n">TestClient</span><span class="p">(</span><span class="n">app</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-        <span class="c1"># Application &#39;on_startup&#39; handlers are called on entering the block.</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
-
-    <span class="c1"># Application &#39;on_shutdown&#39; handlers are called on exiting the block.</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Starlette</span><span class="p">(</span><span class="n">routes</span><span class="o">=</span><span class="n">routes</span><span class="p">)</span>
 </code></pre></div>
                 
               
@@ -682,7 +654,7 @@ startup and shutdown events are called.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="schemas.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: API Schemas" rel="prev">
+        <a href="../background/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Background Tasks" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -691,20 +663,20 @@ startup and shutdown events are called.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              API Schemas
+              Background Tasks
             </div>
           </div>
         </a>
       
       
         
-        <a href="background.html" class="md-footer__link md-footer__link--next" aria-label="Next: Background Tasks" rel="next">
+        <a href="../exceptions/" class="md-footer__link md-footer__link--next" aria-label="Next: Exceptions" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Background Tasks
+              Exceptions
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -733,14 +705,14 @@ startup and shutdown events are called.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../assets/javascripts/bundle.76f349be.min.js"></script>
       
-        <script src="js/chat.js"></script>
+        <script src="../js/chat.js"></script>
       
-        <script src="js/sidecar-1.5.0.js"></script>
+        <script src="../js/sidecar-1.5.0.js"></script>
       
     
   </body>
