@@ -12,7 +12,7 @@ mypy==0.920
 types-requests==2.26.1
 types-contextvars==2.4.0
 types-PyYAML==6.0.1
-types-dataclasses==0.6.1
+types-dataclasses==0.6.2
 pytest==6.2.5
 trio==0.19.0
 
